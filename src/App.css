@@ -1,38 +1,71 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  min-height: 170vh;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-image: linear-gradient(80deg,#e1f0e5,#ecf0e1,#ccc7ed);
+
 }
+.googleButton-container {
+  background-color: #5c94e1;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.googleButton-container:hover {
+  background-color: #c53727;
+}
+
+button{
+  border: #b55172;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #b55172;
+
+}
+.sign-out-butoon-container,.sign-up-button-container,.log-in-button-container{
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+
+}
+.homepage-button, .profilepage-button{
+  text-align: left;
+  background-color: #b55172;
+  color: aliceblue;
+  align-items: baseline;
+}
+
+header {
+  background-color: rgb(177, 199, 226);
+  color: rgb(19, 4, 4);
+  padding: 20px;
+  text-align: center;
+}
+
+/* Styles for the title within the title bar */
+header h1 {
+  margin: 0;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.sign-in-container{
+  color:rgb(15, 1, 1);
+  margin-inline: 1vh;
+  
+}
+
+.sign-in-with-google-container{
+  margin-top: 5vh;
+}
+
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
+
