@@ -6,7 +6,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPass] = useState('');
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   const handleSignUp = (e) => {
     e.preventDefault();
