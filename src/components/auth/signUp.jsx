@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, googleProvider } from '../../firebase';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPass] = useState('');
+  const navigate = useNavigate;
 
   const handleSignUp = (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential);
+        navigate('/dashboard');
       })
       .catch((error) => {
         console.log(error);
@@ -36,7 +39,7 @@ const SignUp = () => {
           onChange={(e) => setPass(e.target.value)}
         /></div>
         <div className='sign-up-button-container'>
-        <button type="submit">Sign up</button></div>
+        <button type="submit" onClick={handleSignUp}>Sign up</button></div>
       </form>
       
     </div>

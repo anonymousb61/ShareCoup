@@ -2,16 +2,22 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from '../../firebase';
+import {BrowserRouter as Router, Switch,Route,Redirect} from "react-router-dom";
+import ProfilePage from '../profile'
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPass] = useState('');
+  const navigate = useNavigate();
 
   const handleSignIn = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential);
+        navigate('/dashboard')
+      
       })
       .catch((error) => {
         console.log(error);
@@ -20,6 +26,7 @@ const SignIn = () => {
   const SignInWithGoogle = async() =>{
     try{
     await signInWithPopup(auth, googleProvider)
+    navigate('/dashboard')
 
   }
 catch (err){

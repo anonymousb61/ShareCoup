@@ -1,8 +1,9 @@
 .App {
   text-align: center;
-  min-height: 170vh;
+  min-height: 160vh;
   align-items: center;
   background-image: linear-gradient(80deg,#e1f0e5,#ecf0e1,#ccc7ed);
+  margin-top: 0vh;
 
 }
 .googleButton-container {
@@ -12,11 +13,22 @@
   border-radius: 5px;
   cursor: pointer;
 }
+.codeListHeading{
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: #9027ed;
+  font-size: xx-large;
+
+}
 
 .googleButton-container:hover {
   background-color: #c53727;
 }
+.copyButton{
+  margin-left: 1vh;
+  background-color: #f5f4f2;
+  color: #b55172;
 
+}
 button{
   border: #b55172;
   background-color: white;
@@ -25,6 +37,12 @@ button{
   cursor: pointer;
   color: #b55172;
 
+}
+.AddButton{
+  margin-top: 2vh;
+  font-size: medium;
+  background-color: #b55172;
+  color: #ffffff;
 }
 .sign-out-butoon-container,.sign-up-button-container,.log-in-button-container{
   margin-top: 5vh;
@@ -67,5 +85,27 @@ header h1 {
   color: #61dafb;
 }
 
+.sidebar {
+  width: 200px;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+.couponCodeBox{
+  outline: #333;
+  outline-width: 1px;
+}
 
+.sidebar-nav {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
 
+.sidebar-item {
+  margin-bottom: 10px;
+}
+
+.sidebar-item a {
+  text-decoration: none;
+  color: #333;
+}
