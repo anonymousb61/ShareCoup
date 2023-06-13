@@ -11,7 +11,7 @@ import ProfilePrivateRoute from './components/ProfilePrivateRoute';
 import Titlebar from './components/titlebar'
 import {BrowserRouter as Router, Switch,Route,Routes,Link} from "react-router-dom";
 import AddCode from './components/addCode';
-
+import Navbar from './components/navbar/navbar';
 class App extends Component{
   render(){
     return(
@@ -19,18 +19,10 @@ class App extends Component{
       <Titlebar/>
       
       <Router>
+      <Navbar/>
+        
         <div className="App">
-          <ul className="App-header">
-            <li>
-              <Link to ="/">Home</Link>
-            </li>
-            <li>
-              <Link to ="/ProfilePage">Profile Page</Link>
-            </li>
-            <li>
-              <Link to ="/Dashboard">Dashboard</Link>
-            </li>
-          </ul>
+         
           <Routes>
             <Route exact path = '/' element ={<HomePage />}></Route>
             <Route exact path = '/ProfilePage' element ={<ProfilePage />}></Route>

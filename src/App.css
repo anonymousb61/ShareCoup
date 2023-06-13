@@ -4,6 +4,7 @@
   align-items: center;
   background-image: linear-gradient(80deg,#e1f0e5,#ecf0e1,#ccc7ed);
   margin-top: 0vh;
+  padding: 5vh;
 
 }
 .googleButton-container {
@@ -15,8 +16,13 @@
 }
 .codeListHeading{
   font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  color: #9027ed;
+  color: #1d2172;
   font-size: xx-large;
+
+}
+.addCodeBlock{
+  padding: 2vh;
+  border-block: solid;
 
 }
 
@@ -27,6 +33,8 @@
   margin-left: 1vh;
   background-color: #f5f4f2;
   color: #b55172;
+  border-radius: 10px;
+
 
 }
 button{
@@ -55,7 +63,22 @@ button{
   color: aliceblue;
   align-items: baseline;
 }
+.navbar{
+  background-color: #e1f0e5;
+  padding: 5vh;
+  color: #c53727;
+}
 
+.navItem{
+  padding: 2vh 5vh;
+  margin-left: 1vh;
+  background-color: #ccc7ed;
+  border-radius: 2vh;
+  text-decoration: none;
+  color: #333;
+
+  
+}
 header {
   background-color: rgb(177, 199, 226);
   color: rgb(19, 4, 4);
@@ -68,6 +91,9 @@ header h1 {
   margin: 0;
   font-size: 50px;
   font-weight: bold;
+}
+.intro{
+  border-block: solid
 }
 
 .sign-in-container{
@@ -85,27 +111,9 @@ header h1 {
   color: #61dafb;
 }
 
-.sidebar {
-  width: 200px;
-  background-color: #f0f0f0;
-  padding: 20px;
-}
+
 .couponCodeBox{
   outline: #333;
   outline-width: 1px;
 }
 
-.sidebar-nav {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar-item {
-  margin-bottom: 10px;
-}
-
-.sidebar-item a {
-  text-decoration: none;
-  color: #333;
-}

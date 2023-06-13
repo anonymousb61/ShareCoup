@@ -44,7 +44,7 @@ function CodeListItem({ code, user }) {
   };
 
   return (
-    <div>
+    <div className='addCodeBlock'>
       <p><b>CODE:</b> {code.code} 
       
         <CopyToClipboard text={code.code} onCopy={handleCopy}>
