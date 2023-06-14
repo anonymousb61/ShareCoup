@@ -2,8 +2,6 @@ import SignIn from "./auth/login";
 import SignUp from "./auth/signUp";
 import SignOut from "./auth/signOut";
 import AuthDetails from "./authDetails";
-import TitleBar from './titlebar';
-import Sidebar from "./sidebar";
 
 
 function HomePage() {
@@ -22,8 +20,6 @@ function HomePage() {
 At ShareCoup, generosity and resourcefulness merge seamlessly, ensuring that no discount goes unappreciated. Join us today and unlock the potential of your unused coupon codes. It's time to share, swap, and save together.
 </p>
   </div></div>
-      <SignIn/>
-      <SignUp/>
       <AuthDetails/>
     </div>
   );

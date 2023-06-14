@@ -4,7 +4,7 @@ const TitleBar = () => {
 
   return (
     <header>
-      <h1>Code-Share</h1>
+      <h1>ShareCoup</h1>
     </header>
   );
 };

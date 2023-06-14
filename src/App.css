@@ -65,12 +65,13 @@ button{
 }
 .navbar{
   background-color: #e1f0e5;
-  padding: 5vh;
-  color: #c53727;
+  padding: 7vh;
+  height: 9vh;
+  color: hsl(6, 67%, 46%);
 }
 
 .navItem{
-  padding: 2vh 5vh;
+  padding: 2vh 3vh;
   margin-left: 1vh;
   background-color: #ccc7ed;
   border-radius: 2vh;

@@ -12,14 +12,36 @@ import Titlebar from './components/titlebar'
 import {BrowserRouter as Router, Switch,Route,Routes,Link} from "react-router-dom";
 import AddCode from './components/addCode';
 import Navbar from './components/navbar/navbar';
+import SignIn from './components/auth/login';
+import SignUp from './components/auth/signUp';
+import SignOut
+ from './components/auth/signOut';
 class App extends Component{
-  render(){
+  constructor(props) {
+    super(props);
+    this.state = {
+      isUserSignedIn: false
+    };
+  } componentDidMount() {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      this.setState({ isUserSignedIn: !!user });
+    });
+    this.unsubscribe = unsubscribe;
+  }
+
+  componentWillUnmount() {
+    if (this.unsubscribe) {
+      this.unsubscribe();
+    }
+  } render(){   
+     const { isUserSignedIn } = this.state;
+
     return(
       <>
       <Titlebar/>
       
       <Router>
-      <Navbar/>
+      <Navbar isUserSignedIn={isUserSignedIn}/>
         
         <div className="App">
          
@@ -27,6 +49,10 @@ class App extends Component{
             <Route exact path = '/' element ={<HomePage />}></Route>
             <Route exact path = '/ProfilePage' element ={<ProfilePage />}></Route>
             <Route exact path = '/addCode' element ={<AddCode/>}></Route>
+            <Route exact path = '/auth/login' element ={<SignIn/>}></Route>
+            <Route exact path = '/auth/signUp' element ={<SignUp/>}></Route>
+
+            <Route exact path = '/auth/signOut' element ={<SignOut/>}></Route>
 
             <Route exact path = '/dashboard' element ={<Dashboard />}></Route>
 
@@ -39,53 +65,6 @@ class App extends Component{
   }
 }
 
-// const App = () => {
-//   const [currentPage, setCurrentPage] = useState('home');
-//   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-//   useEffect(() => {
-//     const unsubscribe = onAuthStateChanged(auth, (user) => {
-//       setIsAuthenticated(!!user);
-//     });
-//     return () => {
-//       unsubscribe();
-//     };
-//   }, []);
-
-//   const renderPage = () => {
-//     switch (currentPage) {
-//       case 'home':
-//         return <HomePage />;
-//       case 'profile':
-//         return <ProfilePage />;
-//       case 'dashboard':
-//         return <Dashboard />;
-//       default:
-//         return <HomePage />;
-//     }
-//   };
-
-//   const navigateToPage = (page) => {
-//     setCurrentPage(page);
-//   };
-
-//   return (
-//     <div className="App">
-//       <Titlebar/>
-//       <nav>
-//         <button className="homepage-button" onClick={() => navigateToPage('home')}>
-//           Home
-//         </button>
-//         <button className="profilepage-button" onClick={() => navigateToPage('profile')}>
-//           My Profile
-//         </button>
-//         <button className="dashboard-button" onClick={() => navigateToPage('dashboard')}>
-//           Coupons
-//         </button>
-//       </nav>
-//       {renderPage()}
-//     </div>
-//   );
-// };
 
  export default App;
