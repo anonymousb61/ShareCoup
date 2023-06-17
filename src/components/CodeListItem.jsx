@@ -1,5 +1,6 @@
 import { collection } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
+import Popup from'reactjs-popup';
 import { db, auth } from '../firebase';
 import { setDoc} from 'firebase/firestore';
 import {
@@ -17,6 +18,8 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 
 function CodeListItem({ code, user }) {
+  const [userIdUsingCode, setUserIdUsingCode] = useState(null);
+
   const deleteCode = async (id) => {
     const codeDoc = doc(db, 'codes', id);
     
@@ -35,13 +38,18 @@ function CodeListItem({ code, user }) {
 
   const updateCodeUsage = async (id, isUsed) => {
     const codeDoc = doc(db, 'codes', id);
-    await updateDoc(codeDoc, { used: isUsed });
+    const currentUser = auth.currentUser;
+    const usedByUserId = isUsed ? currentUser.uid : null;
+  
+    await updateDoc(codeDoc, { used: isUsed, usedByUserId: usedByUserId });
   };
+  
 
   const updateCodeAvailability = async (id, isAvailable) => {
     const codeDoc = doc(db, 'codes', id);
     await setDoc(codeDoc, { available: isAvailable }, {merge: true});
   };
+
 
   return (
     <div className='addCodeBlock'>
@@ -55,24 +63,32 @@ function CodeListItem({ code, user }) {
       <p><b>COMPANY NAME:</b> {code.companyName}</p>
       <p><b>EXPIRATION DATE: </b>{code.expirationDate?.toDate().toLocaleString()}</p>
       <div>
-        <input
-          type="checkbox"
-          checked={code.used}
-          onChange={() => updateCodeUsage(code.id, !code.used)}
-        />
-        <label>Is Used</label>
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          checked={code.available}
-          onChange={() => updateCodeAvailability(code.id, !code.available)}
-        />
-        <label>Coupon is Available</label>
-      </div>
+     
+          <input
+            type="checkbox"
+            checked={code.available}
+             onChange={() => updateCodeAvailability(code.id, !code.available)}
+          />
+          <label>Coupon is Available</label>
+        </div>
+<div>
+<button
+  className='useCouponButton'
+  onClick={() => {
+    updateCodeUsage(code.id, !code.used, auth.currentUser?.uid);
+    setUserIdUsingCode(auth.currentUser?.uid);
+  }}
+>
+  {code.used && code.usedByUserId === auth.currentUser?.uid ? 'Cancel Usage' : 'Using This Coupon'}
+</button>
+</div>
+      
       
 
-      <button classname ='deletButton' onClick={() => deleteCode(code.id)}>Delete</button>
+      <button classname ='deleteButton' onClick={() => deleteCode(code.id)}>Delete</button>
+      <p>
+      <b>Usage Status:</b> {code.used ? (code.usedByUserId === auth.currentUser?.uid ? 'Used by you' : 'Used by someone else') : 'Not used'}
+</p>
 
     </div>
   );

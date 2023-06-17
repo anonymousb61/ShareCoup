@@ -14,6 +14,9 @@ function AddCode() {
       const[newExpirationDate, setNewExpirationDate] = useState(null);
       const[newIsUsed, setNewIsUsed]= useState(false);
       const[newIsAvailable, setNewIsAvailable] = useState(true);
+
+      const [newAddedByUserId, setNewAddedByUserId] = useState(null);
+
       const codesCollectionRef = collection(db,"codes");
       
       const handleExpirationDateChange = (date) =>{
@@ -22,33 +25,36 @@ function AddCode() {
     
 
 
-      const onSubmitCode = async() => {
-        try{
-            const userId = auth.currentUser?.uid; // getting the userId of the person who submitted the code
+    const onSubmitCode = async () => {
+      try {
+        const currentUser = auth.currentUser;
+        const addedByUserId = currentUser ? currentUser.uid : null;
+        const usedByUserId = newIsUsed ? currentUser.uid : null;
     
-            await addDoc(codesCollectionRef,
-                {Description: newDescription,
-                code: newCode,
-                companyName: newCompanyName,
-                expirationDate: newExpirationDate,
-                used: newIsUsed,
-                availaible: newIsAvailable,
-                userId: userId,
-            });
-           // getCodesList();
-            setNewDescription("");
-            setNewCode("");
-            setNewCompanyName("");
-            setNewExpirationDate(null);
-            setNewIsUsed(false);
-            setNewIsAvailable(true);
+        await addDoc(codesCollectionRef, {
+          Description: newDescription,
+          code: newCode,
+          companyName: newCompanyName,
+          expirationDate: newExpirationDate,
+          used: newIsUsed,
+          availaible: newIsAvailable,
+          addedByUserId: addedByUserId,
+          usedByUserId: usedByUserId,
+        });
     
-        } catch(err){
-            console.log(err);
-        }
+        setNewDescription('');
+        setNewCode('');
+        setNewCompanyName('');
+        setNewExpirationDate(null);
+        setNewIsUsed(false);
+        setNewIsAvailable(true);
+        setNewAddedByUserId(null);
+       
+      } catch (err) {
+        console.log(err);
+      }
+    };
     
-        
-    }
   return (
     <div>
       <input placeholder='code...' value = {newCode} onChange={(e) =>setNewCode(e.target.value)}/>
@@ -72,6 +78,8 @@ function AddCode() {
           <label htmlFor="isUsedCheckbox">Using Coupon
           </label>
         </div>
+        <div><input type="hidden" value={newAddedByUserId} onChange={(e) => setNewAddedByUserId(e.target.value)} />
+</div>
         <div>
           <input type="checkbox" id="isAvailableCheckbox" 
           checked = {newIsAvailable}
