@@ -20,7 +20,7 @@
   font-size: xx-large;
 
 }
-.addCodeBlock{
+.addCodeBlock , .profilePageCoupon{
   padding: 2vh;
   border-block: solid;
 
@@ -112,8 +112,10 @@ header h1 {
   color: #61dafb;
 }
 
-
-.couponCodeBox{
+.profilePageText{
+  font-size: large;
+}
+.couponCodeBox {
   outline: #333;
   outline-width: 1px;
 }

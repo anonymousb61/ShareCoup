@@ -85,7 +85,6 @@ function CodeListItem({ code, user }) {
       
       
 
-      <button classname ='deleteButton' onClick={() => deleteCode(code.id)}>Delete</button>
       <p>
       <b>Usage Status:</b> {code.used ? (code.usedByUserId === auth.currentUser?.uid ? 'Used by you' : 'Used by someone else') : 'Not used'}
 </p>

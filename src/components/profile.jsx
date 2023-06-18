@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { onAuthStateChanged, signOut, getAuth } from 'firebase/auth';
 import { auth, db } from '../firebase';
-import TitleBar from './titlebar';
-import { collection } from 'firebase/firestore';
-
+import { collection, getDocs, query, where, deleteDoc, doc } from 'firebase/firestore';
 
 const ProfilePage = () => {
   const [userEmail, setUserEmail] = useState('');
@@ -13,7 +11,6 @@ const ProfilePage = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUserEmail(user.email);
-        fetchUserCoupons(user.uid);
         console.log(user.uid);
       } else {
         setUserEmail('');
@@ -36,28 +33,49 @@ const ProfilePage = () => {
       });
   };
 
-  const fetchUserCoupons = async (userid) => {
+  const deleteCode = async (id) => {
+    const codeDoc = doc(db, 'codes', id);
+
     try {
-      // const snapshot = await db.collection('codes')
-      //   .where('userId', '==', userid)
-      //   .get();
-      const codesRef = db.collection('codes');
-      const codesUser = await codesRef.where('userId','==',userid).get()
-        if(codesUser.empty){
-          console.log('no matchingh doc');return;
-        }
+      await deleteDoc(codeDoc);
+      console.log('Code deleted successfully');
 
-        codesUser.forEach(doc =>{console.log(doc.id, '=>', doc.data())})
-
-      // const userCouponData = snapshot.docs.map((doc) => ({
-      //   id: doc.id,
-      //   ...doc.data()
-      // }));
-     // setUserCoupons(userCouponData);
+      // Remove the deleted coupon from the userCoupons state
+      setUserCoupons((prevCoupons) =>
+        prevCoupons.filter((coupon) => coupon.id !== id)
+      );
     } catch (error) {
-      console.error(error);
+      console.error('Error deleting code:', error);
     }
   };
+
+  useEffect(() => {
+    const fetchUserCoupons = async (userId) => {
+      try {
+        const q = query(collection(db, 'codes'), where('addedByUserId', '==', userId));
+        const querySnapshot = await getDocs(q);
+        const userCouponData = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setUserCoupons(userCouponData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const authInstance = getAuth();
+    const unsubscribe = onAuthStateChanged(authInstance, (user) => {
+      if (user) {
+        const userId = user.uid; // Retrieve the user ID from the user object
+        fetchUserCoupons(userId);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <div>
@@ -71,14 +89,19 @@ const ProfilePage = () => {
             <ul>
               {userCoupons.map((coupon) => (
                 <li key={coupon.id}>
-                  <div>
-                    <p>Code: {coupon.code}</p>
-                    <p>Description: {coupon.description}</p>
-                    <p>Company Name: {coupon.companyName}</p>
-                    <p>
-                      Expiration Date:{' '}
-                      {coupon.expirationDate?.toDate().toLocaleString()}
+                  <div className="profilePageCoupon">
+                    <p className="profilePageText">Code: {coupon.code}</p>
+                    <p className="profilePageText">Description: {coupon.Description}</p>
+                    <p className="profilePageText">Company Name: {coupon.companyName}</p>
+                    <p className="profilePageText">
+                      Expiration Date: {coupon.expirationDate?.toDate().toLocaleString()}
                     </p>
+                    <button
+                      className="deleteButton"
+                      onClick={() => deleteCode(coupon.id)}
+                    >
+                      Delete
+                    </button>
                   </div>
                 </li>
               ))}
