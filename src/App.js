@@ -14,6 +14,8 @@ import AddCode from './components/addCode';
 import Navbar from './components/navbar/navbar';
 import SignIn from './components/auth/login';
 import SignUp from './components/auth/signUp';
+import YourUploaded from './components/yourUploaded';
+import YourUsedCoupons from './components/yourUsedCoupons';
 import SignOut
  from './components/auth/signOut';
 class App extends Component{
@@ -51,9 +53,9 @@ class App extends Component{
             <Route exact path = '/addCode' element ={<AddCode/>}></Route>
             <Route exact path = '/auth/login' element ={<SignIn/>}></Route>
             <Route exact path = '/auth/signUp' element ={<SignUp/>}></Route>
-
+            <Route exact path ='/yourUploaded' element={<YourUploaded/>}></Route>
             <Route exact path = '/auth/signOut' element ={<SignOut/>}></Route>
-
+            <Route exact path ='/yourUsedCoupons' element={<YourUsedCoupons/>}></Route>
             <Route exact path = '/dashboard' element ={<Dashboard />}></Route>
 
           </Routes>
