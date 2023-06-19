@@ -51,8 +51,7 @@ catch (err){
           type="password"
           placeholder='Enter your password'
           value={password}
-          onChange={(e) => setPass(e.target.value)}
-        /></div>
+          onChange={(e) => setPass(e.target.value)}/></div>
         <div className='log-in-button-container'>
         <button type="submit">Log in</button></div>
       </form>
