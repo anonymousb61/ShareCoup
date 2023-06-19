@@ -60,9 +60,9 @@ const ProfilePage = () => {
         <p>No user signed in</p>
       )}
 <div className="profileLinks">
-            <Link className="profileItem" to="/yourUploaded">Your Uploaded</Link>
-            <Link className="profileItem" to="/yourUsedCoupons">Your Used Coupons</Link>
-          </div>
+         <p className="profileItem">  <Link className='profileItemLink' to="/yourUploaded">Your Uploaded Coupons</Link>
+         </p> <p className="profileItem">  <Link className='profileItemLink' to="/yourUsedCoupons">Your Used Coupons</Link>
+         </p></div>
     </div>
   );
 };

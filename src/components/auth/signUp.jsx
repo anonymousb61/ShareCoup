@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, googleProvider } from '../../firebase';
 import { Navigate, useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPass] = useState('');
@@ -41,7 +41,7 @@ const SignUp = () => {
         <div className='sign-up-button-container'>
         <button type="submit" onClick={handleSignUp}>Sign up</button></div>
       </form>
-      
+      <p>Already have an account? <Link  to="/auth/login">Login here</Link></p>
     </div>
   );
 }

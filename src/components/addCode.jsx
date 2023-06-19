@@ -14,9 +14,8 @@ function AddCode() {
       const[newExpirationDate, setNewExpirationDate] = useState(null);
       const[newIsUsed, setNewIsUsed]= useState(false);
       const[newIsAvailable, setNewIsAvailable] = useState(true);
-
       const [newAddedByUserId, setNewAddedByUserId] = useState(null);
-
+      const [submissionStatus, setSubmissionStatus] = useState('');
       const codesCollectionRef = collection(db,"codes");
       
       const handleExpirationDateChange = (date) =>{
@@ -49,17 +48,20 @@ function AddCode() {
         setNewIsUsed(false);
         setNewIsAvailable(true);
         setNewAddedByUserId(null);
-       
+        setSubmissionStatus('Thank you for submitting the code!');
+
       } catch (err) {
         console.log(err);
       }
+
     };
     
   return (
     <div>
-      <input placeholder='code...' value = {newCode} onChange={(e) =>setNewCode(e.target.value)}/>
-      <input placeholder='description...' value = {newDescription} onChange={(e) => setNewDescription(e.target.value)}/>
-      <input placeholder = 'company name...' value ={newCompanyName} onChange={(e) =>setNewCompanyName(e.target.value)} />
+      <h2>Add your extra coupons here</h2>
+      <input placeholder='coupon code...' value = {newCode} onChange={(e) =>setNewCode(e.target.value)}/>
+      <input placeholder='description of coupon...' value = {newDescription} onChange={(e) => setNewDescription(e.target.value)}/>
+      <input placeholder = 'name of company...' value ={newCompanyName} onChange={(e) =>setNewCompanyName(e.target.value)} />
       <div>
         <DatePicker
             selected={newExpirationDate}
@@ -88,6 +90,8 @@ function AddCode() {
           </label>
         </div>
         <button onClick={onSubmitCode}> Submit coupon code</button>
+        {submissionStatus && <p>{submissionStatus}</p>}
+
     </div>
   )
 }

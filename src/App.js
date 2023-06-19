@@ -16,6 +16,7 @@ import SignIn from './components/auth/login';
 import SignUp from './components/auth/signUp';
 import YourUploaded from './components/yourUploaded';
 import YourUsedCoupons from './components/yourUsedCoupons';
+import HowToUse from './components/howToUse';
 import SignOut
  from './components/auth/signOut';
 class App extends Component{
@@ -57,6 +58,7 @@ class App extends Component{
             <Route exact path = '/auth/signOut' element ={<SignOut/>}></Route>
             <Route exact path ='/yourUsedCoupons' element={<YourUsedCoupons/>}></Route>
             <Route exact path = '/dashboard' element ={<Dashboard />}></Route>
+            <Route exact path = '/howToUse' element = {<HowToUse/>}></Route>
 
           </Routes>
 

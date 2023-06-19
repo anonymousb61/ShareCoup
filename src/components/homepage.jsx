@@ -2,7 +2,8 @@ import SignIn from "./auth/login";
 import SignUp from "./auth/signUp";
 import SignOut from "./auth/signOut";
 import AuthDetails from "./authDetails";
-
+import { Link } from "react-router-dom";
+import HowToUse from "./howToUse";
 
 function HomePage() {
   return (
@@ -19,6 +20,8 @@ function HomePage() {
 </p><p>
 At ShareCoup, generosity and resourcefulness merge seamlessly, ensuring that no discount goes unappreciated. Join us today and unlock the potential of your unused coupon codes. It's time to share, swap, and save together.
 </p>
+<p><Link className= 'howToUse' to='/howToUse'> How to Use?</Link></p>
+<p>Start using by <Link to ='/auth/login'> logging In</Link></p>
   </div></div>
       <AuthDetails/>
     </div>

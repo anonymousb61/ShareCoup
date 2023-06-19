@@ -5,6 +5,7 @@ import { auth, googleProvider } from '../../firebase';
 import {BrowserRouter as Router, Switch,Route,Redirect} from "react-router-dom";
 import ProfilePage from '../profile'
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -55,9 +56,12 @@ catch (err){
         <div className='log-in-button-container'>
         <button type="submit">Log in</button></div>
       </form>
+      <p>Don't have an account? <Link  to="/auth/signUp">Sign Up</Link> here</p>
+      <p>OR</p>
       <div className='sign-in-with-google-container'>
       <button className = 'googleButton-container' onClick ={SignInWithGoogle}> Sign in with google</button>
-      </div> </div>
+      </div> 
+      </div>
   );
 }
 

@@ -9,6 +9,7 @@ const Navbar = ({ isUserSignedIn }) => {
       <div>
         <Link className="navItem" to="/">Home</Link>
       </div>
+
       {isUserSignedIn && (
         <div>
           <Link className="navItem" to="/ProfilePage">Profile Page</Link>
