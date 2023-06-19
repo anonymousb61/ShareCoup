@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/ShareCoup/static/css/main.c094ce6d.css",
+    "main.js": "/ShareCoup/static/js/main.2e95031e.js",
+    "static/js/787.f3b71997.chunk.js": "/ShareCoup/static/js/787.f3b71997.chunk.js",
+    "static/media/logo.svg": "/ShareCoup/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/ShareCoup/index.html",
+    "main.c094ce6d.css.map": "/ShareCoup/static/css/main.c094ce6d.css.map",
+    "main.2e95031e.js.map": "/ShareCoup/static/js/main.2e95031e.js.map",
+    "787.f3b71997.chunk.js.map": "/ShareCoup/static/js/787.f3b71997.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c094ce6d.css",
+    "static/js/main.2e95031e.js"
+  ]
+}
