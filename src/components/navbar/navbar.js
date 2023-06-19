@@ -17,7 +17,7 @@ const Navbar = ({ isUserSignedIn }) => {
       )}
       {isUserSignedIn && (
       <div>
-        <Link className="navItem" to="/dashboard">List</Link>
+        <Link className="navItem" to="/dashboard">Coupons</Link>
       </div>)}
       {isUserSignedIn && (
       <div>

@@ -58,7 +58,7 @@ catch (err){
       <p>Don't have an account? <Link  to="/auth/signUp">Sign Up</Link> here</p>
       <p>OR</p>
       <div className='sign-in-with-google-container'>
-      <button className = 'googleButton-container' onClick ={SignInWithGoogle}> Sign in with google</button>
+      <button className = 'googleButton-container' onClick ={SignInWithGoogle}> Sign in with Google</button>
       </div> 
       </div>
   );

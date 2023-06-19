@@ -129,7 +129,7 @@ navigate('/addCode');
           </label>
         </div>
         <button onClick={onSubmitCode}> Submit coupon code</button> */}
-        <h2 className='codeListHeading '>Code List</h2>
+        <h2 className='codeListHeading '>Available Coupons:</h2>
         {codeList.map((code) => (
         <CodeListItem key={code.id} code={code}
          /> // Use the CodeListItem component
