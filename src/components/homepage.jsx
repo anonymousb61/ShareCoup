@@ -4,8 +4,27 @@ import SignOut from "./auth/signOut";
 import AuthDetails from "./authDetails";
 import { Link } from "react-router-dom";
 import HowToUse from "./howToUse";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../firebase";
 
 function HomePage() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+
   return (
 
     <div className="App">
@@ -21,7 +40,8 @@ function HomePage() {
 At ShareCoup, generosity and resourcefulness merge seamlessly, ensuring that no discount goes unappreciated. Join us today and unlock the potential of your unused coupon codes. It's time to share, swap, and save together.
 </p>
 <p><Link className= 'howToUse' to='/howToUse'> How to Use?</Link></p>
-<p>Start using by <Link to ='/auth/login'> logging In</Link></p>
+
+{!isLoggedIn && <p>Start using by <Link to='/auth/login'>logging In</Link></p>}
   </div></div>
       <AuthDetails/>
     </div>
